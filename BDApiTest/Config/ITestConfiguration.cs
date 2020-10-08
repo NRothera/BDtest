@@ -3,6 +3,6 @@ namespace BDApiTest.Interfaces
 {
     public interface ITestConfiguration
     {
-        string BaseUrl { get; }
+        string BasePostUrl { get; }
     }
 }

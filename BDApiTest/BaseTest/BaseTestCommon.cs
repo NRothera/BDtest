@@ -19,18 +19,31 @@ namespace BDApiTest.BaseTest
     [Binding]
     public class BaseTestCommon
     {
-        #region Fields    
-
-        protected static IKernel Kernel;
-
-        public TestFeeModel testFeeModel;
-
-        #endregion
-
         protected BaseTestCommon()
         {
 
         }
+
+        #region Fields    
+
+        protected static IKernel Kernel;
+
+        #endregion
+
+        #region Restsharp Properties
+
+        public static IRestRequest Request { get; set; }
+        public static IRestResponse Response { get; set; }
+        public static RestClient Client { get; set; }
+
+        #endregion
+
+        #region Model Properties
+
+        public static Posts PostContent { get; set; }
+        public static Comments CommentsContent { get; set; }
+
+        #endregion
 
         public static ITestConfiguration testConfiguration;
 
@@ -48,19 +61,6 @@ namespace BDApiTest.BaseTest
             Kernel?.Dispose();
         }
 
-        public static IRestRequest Request { get; set; }
-        public static IRestResponse Response { get; set; }
-        public static RestClient Client { get; set; }
-        public string FeeServiceEndpont { get; set; }
-        public RestRequest FeeServiceRequest { get; set; }
-        public RestRequest PermitToFlyRequest { get; set; }
-
-        [BeforeScenario]
-        public void TestSetup()
-        {
-            testFeeModel = Kernel.Get<TestFeeModel>();
-        }
-
         public static Dictionary<string, string> ToDictionary(Table table)
         {
             var dictionary = new Dictionary<string, string>();
@@ -69,42 +69,6 @@ namespace BDApiTest.BaseTest
                 dictionary.Add(row[0], row[1]);
             }
             return dictionary;
-        }
-        public string PermitQueryBuild(string url, string consumerId, string consumerIp, string clientConsumerIp, string userID, string feeDate,
-            string applicationType, string regulation, string weight, string applicantType)
-        {
-            var uriBuilder = new UriBuilder(url);
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-            query["ConsumerId"] = consumerId;
-            query["ConsumerIp"] = consumerIp;
-            query["ClientConsumerIP"] = clientConsumerIp;
-            query["UserID"] = userID;
-            query["FeeDate"] = feeDate;
-            query["ApplicationType"] = applicationType;
-            query["Regulation"] = regulation;
-            query["MaxTakeOffWeightActual"] = weight;
-            query["ApplicantType"] = applicantType;
-            uriBuilder.Query = query.ToString();
-
-            var queryUrl = uriBuilder.ToString();
-            return queryUrl;
-        }
-
-        public List<string[]> GetCsvData()
-        {
-            var column1 = new List<string[]>();
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Console.WriteLine(path);
-            using (var rd = new StreamReader(path + "/Utilities/PermitToFly.csv"))
-            {
-                while (!rd.EndOfStream)
-                {
-                    var splits = rd.ReadLine().Split(',');
-                    column1.Add(splits);
-                }
-
-                return column1;
-            }
         }
     }
 }

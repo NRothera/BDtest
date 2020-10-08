@@ -5,7 +5,7 @@
     <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
     <IsPackable>false</IsPackable>
     <PublishChromeDriver>true</PublishChromeDriver>
-    <UserSecretsId>e3150c07-54de-4577-8e04-2033f822d19c</UserSecretsId>
+    <UserSecretsId>b3150c07-54de-4577-8e04-2033f822d19c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,9 +35,13 @@
 
   <ItemGroup>
     <Folder Include="Factories\" />
-    <Folder Include="Features\" />
-    <Folder Include="Steps\" />
     <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

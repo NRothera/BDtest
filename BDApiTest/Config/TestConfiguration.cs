@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using BDApiTest.Interfaces;
@@ -12,21 +14,18 @@ namespace BDApiTest.Config
     {
         public TestConfiguration()
         {
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("appConfig.json",
-                             optional: true,
-                             reloadOnChange: true)
-                .AddEnvironmentVariables();
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            //builder.AddUserSecrets<TestConfiguration>(true);
-            builder.AddUserSecrets<TestConfiguration>(true);
-            
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile($"{path}/appsettings.json",
+                             optional: true,
+                             reloadOnChange: true);
+
             Configuration = builder.Build();
 
         }
 
         public IConfiguration Configuration { get; }
-
-        public string BaseUrl => Configuration["BaseUrl"];
+        public string BasePostUrl => Configuration["BasePostUrl"];
     }
 }
