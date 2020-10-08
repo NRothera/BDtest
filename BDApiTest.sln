@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDApiTest", "BDApiTest\BDApiTest.csproj", "{681F0EFC-650C-48F2-8904-F1D447747601}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{681F0EFC-650C-48F2-8904-F1D447747601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{681F0EFC-650C-48F2-8904-F1D447747601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{681F0EFC-650C-48F2-8904-F1D447747601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{681F0EFC-650C-48F2-8904-F1D447747601}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC4CEA2C-4CE9-469F-8421-96FF9A122001}
+	EndGlobalSection
+EndGlobal
