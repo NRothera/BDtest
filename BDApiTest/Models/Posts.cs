@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,9 +7,13 @@ namespace BDApiTest.Models
 {
     public class Posts
     {
-        public int userId { get; set; }
-        public int id { get; set; }
-        public string title { get; set; }
-        public string body { get; set; }
+        [JsonProperty("userId")]
+        public int UserId { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
     }
 }

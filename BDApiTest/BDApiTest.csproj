@@ -34,11 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Factories\" />
-    <Folder Include="Utilities\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

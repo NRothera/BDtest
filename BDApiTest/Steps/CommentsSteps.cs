@@ -1,8 +1,4 @@
 ﻿using BDApiTest.BaseTest;
-using BDApiTest.Models;
-using Newtonsoft.Json;
-using RestSharp;
-using System;
 using TechTalk.SpecFlow;
 
 namespace BDApiTest.Steps
@@ -13,17 +9,10 @@ namespace BDApiTest.Steps
         [Given(@"I request a comment with id (.*)")]
         public void GivenIRequestACommentWithId(int id)
         {
-            var postUrl = $"{testConfiguration.BasePostUrl}/{id}/comments";
-            Client = new RestClient(postUrl);
-            Client.Timeout = -1;
-            Request = new RestRequest(Method.GET);
-            Response = Client.Execute(Request);
-        }
+            Id = id;
 
-        [Then(@"I can validate the response")]
-        public void ThenICanValidateTheResponse()
-        {
-            ScenarioContext.Current.Pending();
+            Url = $"{testConfiguration.BasePostUrl}/{id}/comments";
+            GetResponseFrom(Url);
         }
 
     }

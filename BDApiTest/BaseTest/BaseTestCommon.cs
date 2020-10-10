@@ -1,18 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using BDApiTest.Interfaces;
+﻿using BDApiTest.Interfaces;
 using Ninject;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
-using System.Collections.Generic;
-using System.Configuration;
 using RestSharp;
 using BDApiTest.Models;
-using System.Web;
-using System.Reflection;
 
 namespace BDApiTest.BaseTest
 {
@@ -41,7 +31,14 @@ namespace BDApiTest.BaseTest
         #region Model Properties
 
         public static Posts PostContent { get; set; }
-        public static Comments CommentsContent { get; set; }
+        public static Comments[] CommentsList { get; set; }
+
+        #endregion
+
+        #region Properties
+
+        public static int Id { get; set; }
+        public static string Url { get; set; }
 
         #endregion
 
@@ -61,14 +58,25 @@ namespace BDApiTest.BaseTest
             Kernel?.Dispose();
         }
 
-        public static Dictionary<string, string> ToDictionary(Table table)
+        public void GetResponseFrom(string url)
         {
-            var dictionary = new Dictionary<string, string>();
-            foreach (var row in table.Rows)
+            Client = new RestClient(url);
+            Client.Timeout = -1;
+            Request = new RestRequest(Method.GET);
+            Response = Client.Execute(Request);
+        }
+
+        public bool IsValidEmail(string email)
+        {
+            try
             {
-                dictionary.Add(row[0], row[1]);
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
             }
-            return dictionary;
+            catch
+            {
+                return false;
+            }
         }
     }
 }

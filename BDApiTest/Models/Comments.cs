@@ -5,13 +5,17 @@ using System.Text;
 
 namespace BDApiTest.Models
 {
-    [JsonArray]
     public class Comments
     {
-        public string postId { get; set; }
-        public string id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string body { get; set; }
+        [JsonProperty("PostId")]
+        public string PostId { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
     }
 }

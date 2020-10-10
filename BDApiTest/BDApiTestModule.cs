@@ -1,11 +1,7 @@
-﻿using System.IO;
-using System.Reflection;
-using BDApiTest.Interfaces;
+﻿using BDApiTest.Interfaces;
 using BDApiTest.Config;
 using Ninject.Modules;
-using Ninject.Extensions.NamedScope;
 using RestSharp;
-
 
 namespace BDApiTest
 {
