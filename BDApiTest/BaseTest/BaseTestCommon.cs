@@ -76,6 +76,7 @@ namespace BDApiTest.BaseTest
             }
             catch
             {
+                System.Console.WriteLine($"{email}: email is in incorrect format");
                 return false;
             }
         }
