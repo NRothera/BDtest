@@ -3,6 +3,7 @@ using Ninject;
 using TechTalk.SpecFlow;
 using RestSharp;
 using BDApiTest.Models;
+using System.Threading.Tasks;
 
 namespace BDApiTest.BaseTest
 {
@@ -58,12 +59,13 @@ namespace BDApiTest.BaseTest
             Kernel?.Dispose();
         }
 
-        public void GetResponseFrom(string url)
+        public async Task<IRestResponse> GetResponseFrom(string url)
         {
             Client = new RestClient(url);
             Client.Timeout = -1;
             Request = new RestRequest(Method.GET);
-            Response = Client.Execute(Request);
+            var response = await Client.ExecuteAsync(Request);
+            return response;
         }
 
         public bool IsValidEmail(string email)

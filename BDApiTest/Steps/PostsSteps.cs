@@ -1,4 +1,5 @@
 ﻿using BDApiTest.BaseTest;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace BDApiTest.Steps
@@ -7,12 +8,13 @@ namespace BDApiTest.Steps
     public class PostsSteps : BaseTestCommon
     {
         [Given(@"I request a post with id (.*)")]
-        public void GivenIRequestAPostWithId(int id)
+        public async Task GivenIRequestAPostWithId(int id)
         {
             Id = id;
 
             Url = $"{testConfiguration.BasePostUrl}/{id}";
-            GetResponseFrom(Url);
+            Response = await GetResponseFrom(Url);
+            System.Console.WriteLine("Hello");
         }
     }
 }

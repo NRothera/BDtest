@@ -51,12 +51,15 @@ namespace BDApiTest.Steps
             switch (responseType)
             {
                 case ("Post"):
+
                     PostContent.Id.Should().Equals(Id.ToString());
                     PostContent.Title.Should().BeOfType(typeof(string));
                     PostContent.Body.Should().BeOfType(typeof(string));
                     PostContent.UserId.Should().BeOfType(typeof(int));
                     break;
+
                 case ("Comments"):
+
                     foreach (var comment in CommentsList)
                     {
                         comment.Name.Should().BeOfType(typeof(string));
@@ -64,26 +67,30 @@ namespace BDApiTest.Steps
                         comment.PostId.Should().BeOfType(typeof(string));
                     }
                     break;
+
                 default:
                     break;
             }
         }
 
         [Then(@"I can validate that the ""(.*)"" response is empty")]
-        public void ThenICanValidateThatTheResponseIsEmpty(string responseType
-            )
+        public void ThenICanValidateThatTheResponseIsEmpty(string responseType)
         {
             switch (responseType)
             {
                 case ("Post"):
+
                     PostContent.Id.Should().Be(0);
                     PostContent.Title.Should().BeNullOrEmpty();
                     PostContent.Body.Should().BeNullOrEmpty();
                     PostContent.UserId.Should().Be(0);
                     break;
+
                 case ("Comments"):
+
                     CommentsList.Should().BeEmpty();
                     break;
+
                 default:
                     break;
             }
