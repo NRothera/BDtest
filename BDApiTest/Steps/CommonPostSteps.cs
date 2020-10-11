@@ -3,12 +3,13 @@ using BDApiTest.Models;
 using FluentAssertions;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace BDApiTest.Steps
 {
     [Binding]
-    public class CommonSteps : BaseTestCommon
+    public class CommonPostSteps : BaseTestCommon
     {
         [BeforeTestRun]
         public static void TestInit()
@@ -94,6 +95,26 @@ namespace BDApiTest.Steps
                 default:
                     break;
             }
+        }
+
+        [Then(@"I ensure the server set response headers are correct")]
+        public void ThenIEnsureTheServerSetResponseHeadersAreCorrect()
+        {
+            var cacheControl = GetResponseHeader("Cache-Control");
+            var xRateLimit = GetResponseHeader("X-Ratelimit-Limit");
+            var contentType = GetResponseHeader("Content-Type").Split(";")[0] ;
+
+            cacheControl.Should().BeEquivalentTo("max-age=43200");
+            xRateLimit.Should().BeEquivalentTo("1000");
+            contentType.Should().BeEquivalentTo("application/json");
+
+            Console.WriteLine(Response.Headers);
+        }
+
+        [Then(@"I can check the response time is under (.*) milliseconds")]
+        public void ThenICanCheckTheResponseTimeIsUnderMilliseconds(int maxResponseTime)
+        {
+            ResponseTime.Should().BeLessThan(maxResponseTime);
         }
 
 

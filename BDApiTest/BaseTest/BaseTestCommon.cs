@@ -4,6 +4,8 @@ using TechTalk.SpecFlow;
 using RestSharp;
 using BDApiTest.Models;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Diagnostics;
 
 namespace BDApiTest.BaseTest
 {
@@ -40,6 +42,7 @@ namespace BDApiTest.BaseTest
 
         public static int Id { get; set; }
         public static string Url { get; set; }
+        public static long ResponseTime { get; set; }
 
         #endregion
 
@@ -61,10 +64,15 @@ namespace BDApiTest.BaseTest
 
         public async Task<IRestResponse> GetResponseFrom(string url)
         {
+            var watch = new Stopwatch();
+
             Client = new RestClient(url);
             Client.Timeout = -1;
             Request = new RestRequest(Method.GET);
+            watch.Start();
             var response = await Client.ExecuteAsync(Request);
+            watch.Stop();
+            ResponseTime = watch.ElapsedMilliseconds;
             return response;
         }
 
@@ -79,6 +87,16 @@ namespace BDApiTest.BaseTest
             {
                 return false;
             }
+        }
+
+        public string GetResponseHeader(string header)
+        {
+            var headerValue = Response.Headers
+                .Where(x => x.Name == header)
+                .Select(x => x.Value)
+                .FirstOrDefault().ToString();
+
+            return headerValue;
         }
     }
 }
