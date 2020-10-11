@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.7" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0" />
     <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="16.7.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />

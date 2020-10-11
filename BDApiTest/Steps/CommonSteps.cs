@@ -109,8 +109,6 @@ namespace BDApiTest.Steps
             xRateLimit.Should().BeEquivalentTo("1000");
             contentType.Should().BeEquivalentTo("application/json");
             accessControl.Should().BeEquivalentTo("true");
-
-            Console.WriteLine(Response.Headers);
         }
 
         [Then(@"I can check the response time is under (.*) milliseconds")]
@@ -123,7 +121,7 @@ namespace BDApiTest.Steps
         [AfterTestRun]
         public static void TestTearDown()
         {
-            TestSetupTearDown();
+            TearDown();
         }
     }
 }

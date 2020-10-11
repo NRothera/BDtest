@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BDApiTest.Services
+namespace BDApiTest.Enums
 {
-    class AbstractService
+    public enum RequestType
     {
+        GET
     }
 }

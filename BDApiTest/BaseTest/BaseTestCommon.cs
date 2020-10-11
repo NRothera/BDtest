@@ -6,6 +6,7 @@ using BDApiTest.Models;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Diagnostics;
+using BDApiTest.Helpers;
 
 namespace BDApiTest.BaseTest
 {
@@ -20,7 +21,7 @@ namespace BDApiTest.BaseTest
         #region Fields    
 
         protected static IKernel Kernel;
-
+        public static ClientHelper clientHelper;
         #endregion
 
         #region Restsharp Properties
@@ -43,6 +44,7 @@ namespace BDApiTest.BaseTest
         public static int Id { get; set; }
         public static string Url { get; set; }
         public static long ResponseTime { get; set; }
+        
 
         #endregion
 
@@ -54,31 +56,17 @@ namespace BDApiTest.BaseTest
             Kernel = new StandardKernel(new BDApiTestModule());
             var config = Kernel.Get<ITestConfiguration>();
             testConfiguration = config;
+
+            //helpers 
+            clientHelper = Kernel.Get<ClientHelper>();
         }
 
         //[TestCleanup]
-        public static void TestSetupTearDown()
+        public static void TearDown()
         {
             Kernel?.Dispose();
         }
-
-        public async Task<IRestResponse> GetResponseFrom(string url)
-        {
-            var watch = new Stopwatch();
-
-            Client = new RestClient(url);
-            Client.Timeout = -1;
-            Request = new RestRequest(Method.GET);
-
-            // Keep track of how long it takes to get the response
-            watch.Start();
-            var response = await Client.ExecuteAsync(Request);
-            watch.Stop();
-            ResponseTime = watch.ElapsedMilliseconds;
-
-            return response;
-        }
-
+       
         public bool IsValidEmail(string email)
         {
             try

@@ -1,4 +1,5 @@
 ﻿using BDApiTest.BaseTest;
+using BDApiTest.Enums;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -13,8 +14,7 @@ namespace BDApiTest.Steps
             Id = id;
 
             Url = $"{testConfiguration.BasePostUrl}/{id}";
-            Response = await GetResponseFrom(Url);
-            System.Console.WriteLine("Hello");
+            Response = await clientHelper.GetResponseForRequestType(RequestType.GET, Url);
         }
     }
 }
