@@ -45,9 +45,8 @@ namespace BDApiTest.Steps
             }
         }
 
-        // Thens
-        [Then(@"I can validate the ""(.*)"" response")]
-        public void ThenICanValidateTheResponse(string responseType)
+        [Then(@"the ""(.*)"" response contains all the required properties")]
+        public void ThenTheResponseContainsAllTheRequiredProperties(string responseType)
         {
             switch (responseType)
             {
@@ -73,7 +72,7 @@ namespace BDApiTest.Steps
                     break;
             }
         }
-
+      
         [Then(@"I can validate that the ""(.*)"" response is empty")]
         public void ThenICanValidateThatTheResponseIsEmpty(string responseType)
         {

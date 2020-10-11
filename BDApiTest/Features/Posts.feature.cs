@@ -168,7 +168,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I deserialise the \"Post\" response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.Then("I can validate the \"Post\" response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the \"Post\" response contains all the required properties", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

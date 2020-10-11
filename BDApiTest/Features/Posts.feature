@@ -11,7 +11,7 @@ Scenario: Return the correct JSON body from the Post endpoint
 	Given I request a post with id 1
 	And I get a 200 response
 	When I deserialise the "Post" response
-	Then I can validate the "Post" response
+	Then the "Post" response contains all the required properties
 
 Scenario: Empty JSON body is returned with invalid id for posts
 	Given I request a post with id -1

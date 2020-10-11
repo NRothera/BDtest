@@ -11,14 +11,21 @@ namespace BDApiTest.Helpers
 {
     public class ClientHelper : BaseTestCommon
     {
+        private RestClient BuildClient(string url)
+        {
+            Client = new RestClient(url);
+            Client.Timeout = -1;
+
+            return Client;
+        }
+
         public async Task<IRestResponse> GetResponseForRequestType(RequestType requestType, string url)
         {
             IRestResponse response; 
 
             var watch = new Stopwatch();
 
-            Client = new RestClient(url);
-            Client.Timeout = -1;
+            BuildClient(url);
 
             try
             {

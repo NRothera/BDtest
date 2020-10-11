@@ -11,7 +11,7 @@ Scenario: Return the JSON body from the Comments endpoint
 	Given I request a comment with id 1
 	And I get a 200 response
 	When I deserialise the "Comments" response
-	Then I can validate the "Comments" response
+	Then the "Comments" response contains all the required properties
 
 Scenario: Empty JSON body is returned with invalid id for Comments
 	Given I request a comment with id -1
