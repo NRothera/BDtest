@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 namespace BDApiTest.Steps
 {
     [Binding]
-    public class CommonPostSteps : BaseTestCommon
+    public class CommonSteps : BaseTestCommon
     {
         [BeforeTestRun]
         public static void TestInit()
@@ -102,11 +102,13 @@ namespace BDApiTest.Steps
         {
             var cacheControl = GetResponseHeader("Cache-Control");
             var xRateLimit = GetResponseHeader("X-Ratelimit-Limit");
-            var contentType = GetResponseHeader("Content-Type").Split(";")[0] ;
+            var contentType = GetResponseHeader("Content-Type").Split(";")[0];
+            var accessControl = GetResponseHeader("Access-Control-Allow-Credentials");
 
             cacheControl.Should().BeEquivalentTo("max-age=43200");
             xRateLimit.Should().BeEquivalentTo("1000");
             contentType.Should().BeEquivalentTo("application/json");
+            accessControl.Should().BeEquivalentTo("true");
 
             Console.WriteLine(Response.Headers);
         }

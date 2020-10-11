@@ -69,10 +69,13 @@ namespace BDApiTest.BaseTest
             Client = new RestClient(url);
             Client.Timeout = -1;
             Request = new RestRequest(Method.GET);
+
+            // Keep track of how long it takes to get the response
             watch.Start();
             var response = await Client.ExecuteAsync(Request);
             watch.Stop();
             ResponseTime = watch.ElapsedMilliseconds;
+
             return response;
         }
 
